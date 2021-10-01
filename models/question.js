@@ -8,7 +8,8 @@ let Question = new Schema({
     id: { type: Number, required: true, unique: true },
     points: { type: Number, required: true },
     answer: { type: String, required: true },
-    link: { type: String }
+    link: { type: String },
+    category: {type: String}
 });
 
 
