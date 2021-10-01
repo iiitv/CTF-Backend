@@ -11,7 +11,7 @@ const login = async (req, res, next) => {
         }
         if (bcrypt.compareSync(password, user.password)) {
             const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
-            res.cookie('token', token, { maxAge: 24 * 60 * 60 * 1000 }) //24hours
+            res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true }) // 7 days
             return res.status(200).json({ message: "Login successful!" })
         }
         return res.status(401).json({ message: 'Email or password is wrong!' })
