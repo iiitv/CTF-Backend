@@ -6,6 +6,10 @@
 <img src="https://img.shields.io/github/forks/iiitv/CTF-Backend?style=for-the-badge">
 </p>
 
+# For Contributers
+Please give a read to this <a href="https://github.com/iiitv/CTF-Backend/wiki">Wiki</a>
+
+
 # Setup📝
 
 ## Requirements☕
