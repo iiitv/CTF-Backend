@@ -1,3 +1,3 @@
-const login = require('./login');
-
-module.exports = { login };
+const login = require("./login");
+const resetPassword = require("./resetPassword");
+module.exports = { login, resetPassword };
