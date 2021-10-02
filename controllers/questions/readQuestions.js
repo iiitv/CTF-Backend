@@ -1,6 +1,12 @@
+const questionModel = require('../../models/question');
+
 const readQuestions = async (req, res, next) => {
-    return res.status(500).json({ message: 'Under contruction!' });
-  };
-  
-  module.exports = readQuestions;
-  
+  try {
+    const questions = await questionModel.find({});
+    return res.status(200).json(questions);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
+
+module.exports = readQuestions;
