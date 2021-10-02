@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../../models/user')
 const { validationResult } = require('express-validator')
+const nodemailer = require('../../config/nodemail.config')
 
 const signup = async (req, res, next) => {
     try {
@@ -16,10 +17,12 @@ const signup = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10);
         // Hash user password
         newUser.password = await bcrypt.hash(password, salt);
-        await newUser.save();
         const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET);
+        newUser.verificationCode = token;
+        await newUser.save();
         res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true });
-        return res.status(201).json({ message: 'Successfully registered' });
+        res.status(201).json({ message: 'Successfully registered. Please check your inbox' });
+        nodemailer.sendVerificationMail(newUser.username, newUser.email, token);
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error!' })
     }

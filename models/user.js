@@ -10,7 +10,16 @@ let User = new Schema({
     levelsCompleted: [Number],
     score: { type: Number, default: 0 },
     lastSubmit: { type: Date, default: Date.now },
-    lastSuccess: { type: Date, default: Date.now }
+    lastSuccess: { type: Date, default: Date.now },
+    verificationStatus: {
+        type: String,
+        enum: ["Active", "Pending"],
+        default: "Pending"
+    },
+    verificationCode: {
+        type: String,
+        unique: true
+    }
 });
 
 
