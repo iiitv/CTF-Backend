@@ -6,17 +6,17 @@ const {
   readQuestion,
   readQuestions,
   updateQuestion,
-} = require('../controllers/questions');
+} = require('../controllers/questions/index');
 const { auth } = require('../middlewares/auth');
 
-router.post('/questions', createQuestion);
+router.post('', createQuestion);
 
-router.get('/questions', readQuestion);
+router.get('', readQuestions);
 
-router.get('/questions/:question_id', readQuestions);
+router.get(':question_id', readQuestion);
 
-router.patch('/questions/:question_id', updateQuestion);
+router.patch(':question_id', updateQuestion);
 
-router.delete('/questions/:question_id', deleteQuestion);
+router.delete(':question_id', deleteQuestion);
 
 module.exports = router;
