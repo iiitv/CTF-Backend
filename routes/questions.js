@@ -15,8 +15,8 @@ router.get('', readQuestions);
 
 router.get('/:id', readQuestion);
 
-router.patch(':id', updateQuestion);
+router.patch('/:id', updateQuestion);
 
-router.delete(':id', deleteQuestion);
+router.delete('/:id', deleteQuestion);
 
 module.exports = router;
