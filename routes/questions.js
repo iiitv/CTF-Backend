@@ -13,10 +13,10 @@ router.post('', createQuestion);
 
 router.get('', readQuestions);
 
-router.get(':question_id', readQuestion);
+router.get('/:id', readQuestion);
 
-router.patch(':question_id', updateQuestion);
+router.patch(':id', updateQuestion);
 
-router.delete(':question_id', deleteQuestion);
+router.delete(':id', deleteQuestion);
 
 module.exports = router;
