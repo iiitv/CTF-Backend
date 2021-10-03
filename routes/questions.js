@@ -5,4 +5,23 @@ const { auth } = require('../middlewares/index')
 
 router.get('/add',[auth.verifyToken, auth.isAdmin], addQuestion);
 
+const {
+  createQuestion,
+  deleteQuestion,
+  readQuestion,
+  readQuestions,
+  updateQuestion,
+} = require('../controllers/questions/index');
+
+router.post('', createQuestion);
+
+router.get('', readQuestions);
+
+router.get('/:id', readQuestion);
+
+router.patch('/:id', updateQuestion);
+
+router.delete('/:id', deleteQuestion);
+
+
 module.exports = router;
