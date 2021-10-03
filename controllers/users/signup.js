@@ -25,7 +25,7 @@ const signup = async (req, res, next) => {
         res.status(201).json({ message: 'Successfully registered. Please check your inbox' });
         nodemailer.sendVerificationMail(newUser.username, newUser.email, token);
     } catch (error) {
-        return console.log(error)
+        return res.status(500).json({ message: 'Internal server error!' })
     }
 };
 
