@@ -7,6 +7,7 @@ const connectDatabase = require('./config/database');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const questionsRouter = require('./routes/questions');
+const gAuth = require('./routes/gAuth');
 const app = express();
 connectDatabase();
 app.use(logger('dev'));
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
+app.use('/', gAuth);
 app.use('/users', usersRouter);
 app.use('/questions', questionsRouter);
 

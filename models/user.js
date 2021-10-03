@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-
+const findOrCreate = require("mongoose-findorcreate");
 
 let User = new Schema({
     username: { type: String, required: true, unique: true },
@@ -22,6 +22,8 @@ let User = new Schema({
     }
 });
 
+//for hash and salt and e-ncryption basically
+User.plugin(findOrCreate);
 
 
 //create a mongodb model with the name 'User' and Schema User
