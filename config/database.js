@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 mongoose.Promise = global.Promise;
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://Anonymous:bfvhjtNAyD5tRhC2@cluster0.apmas.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        await mongoose.connect(process.env.DATABASE_URL);
 
         console.log("MongoDB connected...");
     } catch (err) {
