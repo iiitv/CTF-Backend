@@ -19,17 +19,19 @@ passport.serializeUser(function(user, done) {
 router.get('/auth/google', passport.authenticate("google", { scope: ["profile"] }))
 
 //set this end point to the redirect uri of your google oauth
-router.get("/auth/google/'YOUR REDIRECT URI'",
+router.get("/auth/google/secrets",
 passport.authenticate("google", {failureRedirect: "/login"}),
 async function(req,res){
     try{
-        // console.log(req)
-        const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET)
-        res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true }) // 7 days
-        const user = await User.findOne({
-            _id: req.user._id
-        });
-       
+          // console.log(req)
+          
+          const user = await User.findOne({
+              _id: req.user._id
+          }) 
+          const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+          console.log(user+" user")
+          console.log(token+" here")
+          res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true }) // 7 days
         if (!user) return res.status(404).send({ message: "User doesn't exist!!" });
         user.verificationStatus = "Active";
         user.verificationCode = token
