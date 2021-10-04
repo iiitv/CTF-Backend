@@ -29,8 +29,6 @@ async function(req,res){
               _id: req.user._id
           }) 
           const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-          console.log(user+" user")
-          console.log(token+" here")
           res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true }) // 7 days
         if (!user) return res.status(404).send({ message: "User doesn't exist!!" });
         user.verificationStatus = "Active";
