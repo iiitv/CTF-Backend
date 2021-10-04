@@ -12,15 +12,9 @@ const login = async (req, res, next) => {
         }
         if (bcrypt.compareSync(password, user.password)) {
             
-            var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-                expiresIn: 86400,
-              })
-              res.status(200).send({
-                id: user._id,
-                username: user.username,
-                email: user.email,
-                accessToken: token
-              });
+            var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
+            res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true });
+            res.status(200).send({ message: 'Login successfull'})
         }
 
     
