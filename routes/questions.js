@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { addQuestion } = require('../controllers/questions');
+const { auth } = require('../middlewares/index')
+
+router.get('/add',[auth.verifyToken, auth.isAdmin], addQuestion);
+
 const {
   createQuestion,
   deleteQuestion,
@@ -7,7 +12,6 @@ const {
   readQuestions,
   updateQuestion,
 } = require('../controllers/questions/index');
-const { auth } = require('../middlewares/auth');
 
 router.post('', createQuestion);
 
@@ -18,5 +22,6 @@ router.get('/:id', readQuestion);
 router.patch('/:id', updateQuestion);
 
 router.delete('/:id', deleteQuestion);
+
 
 module.exports = router;

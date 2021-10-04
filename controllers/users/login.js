@@ -12,6 +12,7 @@ const login = async (req, res, next) => {
         }
         if (bcrypt.compareSync(password, user.password)) {
 
+
             if(user.verificationStatus === "Pending"){
                 nodemailer.sendVerificationMail(user.username, user.email, user.verificationCode);
                return res.status(201).json({ message: 'Please verify your email first then login!' });
@@ -21,6 +22,7 @@ const login = async (req, res, next) => {
                 res.cookie('token', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOny: true }) // 7 days
                 return res.status(200).json({ message: "Login successful!" })
             }
+
 
     
         return res.status(401).json({ message: 'Email or password is wrong!' })

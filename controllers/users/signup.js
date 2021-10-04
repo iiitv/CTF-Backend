@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../../models/user')
 const { validationResult } = require('express-validator')
 const nodemailer = require('../../config/nodemail.config')
+require('dotenv').config()
 
 const signup = async (req, res, next) => {
     try {
@@ -27,5 +28,4 @@ const signup = async (req, res, next) => {
         return res.status(500).json({ message: 'Internal server error!' })
     }
 };
-
 module.exports = signup;

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const connectDatabase = require('./config/database');
+const jwt = require('jsonwebtoken')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const questionsRouter = require('./routes/questions');
@@ -19,5 +20,6 @@ app.use('/', indexRouter);
 app.use('/', gAuth);
 app.use('/users', usersRouter);
 app.use('/questions', questionsRouter);
+
 
 module.exports = app;
