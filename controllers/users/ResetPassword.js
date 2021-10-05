@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const User = require("../../models/user");
 
-const changePassword = async (req, res, next) => {
+const resetPassword = async (req, res, next) => {
     try {
         const user = await User.findOne({
             OTP: req.body.OTP
@@ -29,4 +29,4 @@ const changePassword = async (req, res, next) => {
     }
 }
 
-module.exports = changePassword;
+module.exports = resetPassword;
