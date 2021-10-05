@@ -9,7 +9,7 @@ router.get('/login', login);
 router.post('/signup', signupValidation, signup);
 router.get("/confirm/:verificationCode", verification);
 router.get('/forgotPassword', forgotPassword);
-router.post("/resetPassword", [auth.verifyToken], resetPassword)
-router.post("/changePassword", changePassword);
+router.post("/resetPassword", resetPassword)
+router.post("/changePassword", [auth.verifyToken], changePassword);
 
 module.exports = router;
