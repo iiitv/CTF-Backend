@@ -19,6 +19,10 @@ let User = new Schema({
     verificationCode: {
         type: String,
         unique: true
+    },
+    OTP: {
+        type: String,
+        unique: true
     }
 });
 

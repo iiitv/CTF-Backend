@@ -9,6 +9,21 @@ const transport = nodemailer.createTransport({
     },
 });
 
+module.exports.sendResetPasswordMail = (name, email, verificationCode) => {
+    
+    // put the frontend href in <a> tag as it will be a post request for changing password
+    transport.sendMail({
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: "Please confirm your account",
+        html: `<h1>Email Confirmation</h1>
+          <h2>Hello ${name}</h2>
+          <p>Verification Code: ${verificationCode}</p>
+         <a href=FRONTEND API FOR CHANGING PASSWORD</a>
+          </div>`,
+    }).catch(err => console.log(err));
+}
+
 module.exports.sendVerificationMail = (name, email, verificationCode) => {
     transport.sendMail({
         from: process.env.SENDER_EMAIL,
